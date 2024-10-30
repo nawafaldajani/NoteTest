@@ -1,0 +1,118 @@
+<!-- src/main/resources/templates/note_form.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create/Update Note</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    header {
+      background: #35424a;
+      color: #ffffff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    h2 {
+      margin: 20px 20px;
+      color: #35424a;
+    }
+
+    a {
+      color: #35424a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: aqua;
+    }
+
+    .note-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .note-list li {
+      background: #ffffff;
+      margin: 10px 10px;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .note-list li a {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    form {
+      margin: 20px 0;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background: #35424a;
+      color: #ffffff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+<h1 th:text="${note.id == null} ? 'Create Note' : 'Update Note'"></h1>
+<form th:action="@{/notes}" th:object="${note}" method="post">
+  <input type="hidden" th:field="*{id}"/>
+  <label>Title:</label>
+  <input type="text" th:field="*{title}" required/>
+  <label>Content:</label>
+  <textarea th:field="*{content}" required></textarea>
+  <button type="submit">Save</button>
+</form>
+<a href="/notes">Back to List</a>
+</body>
+</html>
